@@ -1,0 +1,91 @@
+{
+  "pairs": {
+    "BLACK_HOLES__DARK_MATTER": {
+      "EG_pvalue": 0.9267393003590128,
+      "hedge_ratio": 0.043559423640489654,
+      "spread_ADF_p": 0.8171193327794035,
+      "halflife": 39253.45230879758,
+      "spread_std": 0.08242218572046266
+    },
+    "BLACK_HOLES__PLANETARY_RINGS": {
+      "EG_pvalue": 0.951684711873387,
+      "hedge_ratio": 0.12627047657039647,
+      "spread_ADF_p": 0.8748127148868154,
+      "halflife": 267619.21740023245,
+      "spread_std": 0.08193584616099796
+    },
+    "BLACK_HOLES__SOLAR_FLAMES": {
+      "EG_pvalue": 0.8757469761471603,
+      "hedge_ratio": -0.18872438894517077,
+      "spread_ADF_p": 0.7172737124111648,
+      "halflife": 18024.140188542573,
+      "spread_std": 0.0820789483786331
+    },
+    "BLACK_HOLES__SOLAR_WINDS": {
+      "EG_pvalue": 0.9108833106249532,
+      "hedge_ratio": 0.7197534874688115,
+      "spread_ADF_p": 0.7566062217940555,
+      "halflife": 15646.460500103862,
+      "spread_std": 0.07342683867954321
+    },
+    "DARK_MATTER__PLANETARY_RINGS": {
+      "EG_pvalue": 0.08413489098070182,
+      "hedge_ratio": 0.1883448080002503,
+      "spread_ADF_p": 0.03617050351796073,
+      "halflife": 1219.0053476250494,
+      "spread_std": 0.029097755441369378
+    },
+    "DARK_MATTER__SOLAR_FLAMES": {
+      "EG_pvalue": 0.15211802130763102,
+      "hedge_ratio": -0.01135398487543994,
+      "spread_ADF_p": 0.06340763561527007,
+      "halflife": 1497.4835319414149,
+      "spread_std": 0.03207262007720425
+    },
+    "DARK_MATTER__SOLAR_WINDS": {
+      "EG_pvalue": 0.15295969762778272,
+      "hedge_ratio": -0.014565828359501433,
+      "spread_ADF_p": 0.06425294672739966,
+      "halflife": 1498.3581069588868,
+      "spread_std": 0.03206695244383116
+    },
+    "PLANETARY_RINGS__SOLAR_FLAMES": {
+      "EG_pvalue": 0.9082023334736185,
+      "hedge_ratio": -0.025424964066407752,
+      "spread_ADF_p": 0.7466720827005092,
+      "halflife": 15076.311282677938,
+      "spread_std": 0.0716592607149478
+    },
+    "PLANETARY_RINGS__SOLAR_WINDS": {
+      "EG_pvalue": 0.902925404340803,
+      "hedge_ratio": 0.12471081702364453,
+      "spread_ADF_p": 0.7446210658110453,
+      "halflife": 14949.85146177877,
+      "spread_std": 0.0713720030280426
+    },
+    "SOLAR_FLAMES__SOLAR_WINDS": {
+      "EG_pvalue": 0.11935857161000457,
+      "hedge_ratio": -0.25787925459387784,
+      "spread_ADF_p": 0.02082042686127937,
+      "halflife": 1471.5055896519964,
+      "spread_std": 0.038209767439082824
+    }
+  },
+  "johansen": {
+    "trace_stat": [
+      41.65045779367824,
+      23.368440046937618,
+      13.994276364120312,
+      6.022610018336512,
+      2.228572616305084
+    ],
+    "crit_95": [
+      69.8189,
+      47.8545,
+      29.7961,
+      15.4943,
+      3.8415
+    ],
+    "rank_at_95": 0
+  }
+}

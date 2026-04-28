@@ -1,0 +1,86 @@
+{
+  "ccf": {
+    "BLACK_HOLES__DARK_MATTER": {
+      "max_abs_lag": 8,
+      "max_abs_corr": 0.012152938895551238
+    },
+    "BLACK_HOLES__PLANETARY_RINGS": {
+      "max_abs_lag": -9,
+      "max_abs_corr": 0.011306128717983144
+    },
+    "BLACK_HOLES__SOLAR_FLAMES": {
+      "max_abs_lag": 4,
+      "max_abs_corr": 0.014646547130029575
+    },
+    "BLACK_HOLES__SOLAR_WINDS": {
+      "max_abs_lag": 2,
+      "max_abs_corr": 0.012131083221701285
+    },
+    "DARK_MATTER__PLANETARY_RINGS": {
+      "max_abs_lag": 9,
+      "max_abs_corr": 0.012505103897751715
+    },
+    "DARK_MATTER__SOLAR_FLAMES": {
+      "max_abs_lag": -6,
+      "max_abs_corr": 0.01501089523485793
+    },
+    "DARK_MATTER__SOLAR_WINDS": {
+      "max_abs_lag": -1,
+      "max_abs_corr": 0.016698951996168998
+    },
+    "PLANETARY_RINGS__SOLAR_FLAMES": {
+      "max_abs_lag": -2,
+      "max_abs_corr": 0.017366159429025814
+    },
+    "PLANETARY_RINGS__SOLAR_WINDS": {
+      "max_abs_lag": -10,
+      "max_abs_corr": 0.0120498791373336
+    },
+    "SOLAR_FLAMES__SOLAR_WINDS": {
+      "max_abs_lag": 4,
+      "max_abs_corr": 0.015532743190329561
+    }
+  },
+  "granger": {
+    "BLACK_HOLES__DARK_MATTER": {
+      "p_A_causes_B": 0.06025326993947789,
+      "p_B_causes_A": 0.12273506103356523
+    },
+    "BLACK_HOLES__PLANETARY_RINGS": {
+      "p_A_causes_B": 0.044765091223172356,
+      "p_B_causes_A": 0.0553057121181228
+    },
+    "BLACK_HOLES__SOLAR_FLAMES": {
+      "p_A_causes_B": 0.052615756698105136,
+      "p_B_causes_A": 0.07942988772594838
+    },
+    "BLACK_HOLES__SOLAR_WINDS": {
+      "p_A_causes_B": 0.04036769114643165,
+      "p_B_causes_A": 0.7213408542628634
+    },
+    "DARK_MATTER__PLANETARY_RINGS": {
+      "p_A_causes_B": 0.1180444368250107,
+      "p_B_causes_A": 0.4911050228066831
+    },
+    "DARK_MATTER__SOLAR_FLAMES": {
+      "p_A_causes_B": 0.501161905952472,
+      "p_B_causes_A": 0.6609183592851995
+    },
+    "DARK_MATTER__SOLAR_WINDS": {
+      "p_A_causes_B": 0.3692489126442028,
+      "p_B_causes_A": 0.31557609874140613
+    },
+    "PLANETARY_RINGS__SOLAR_FLAMES": {
+      "p_A_causes_B": 0.26332120491489214,
+      "p_B_causes_A": 0.5435754005514408
+    },
+    "PLANETARY_RINGS__SOLAR_WINDS": {
+      "p_A_causes_B": 0.05129135259722947,
+      "p_B_causes_A": 0.4119982240692123
+    },
+    "SOLAR_FLAMES__SOLAR_WINDS": {
+      "p_A_causes_B": 0.0562030905944603,
+      "p_B_causes_A": 0.027516480313165007
+    }
+  }
+}

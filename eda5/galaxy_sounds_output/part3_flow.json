@@ -1,0 +1,37 @@
+{
+  "BLACK_HOLES": {
+    "kyle_lambda": -0.00011454739709028828,
+    "kyle_r2": 1.3894126535901158e-05,
+    "kyle_p": 0.9197521896754863,
+    "n_spikes": 179,
+    "post_spike_signed_cumret_30": -0.00014456036163054982
+  },
+  "DARK_MATTER": {
+    "kyle_lambda": 0.0003835477903135662,
+    "kyle_r2": 0.0009531703457972468,
+    "kyle_p": 0.40392068238658574,
+    "n_spikes": 179,
+    "post_spike_signed_cumret_30": 0.001158771079487601
+  },
+  "PLANETARY_RINGS": {
+    "kyle_lambda": -0.0011141412911363743,
+    "kyle_r2": 0.001711633855452697,
+    "kyle_p": 0.26328139263663586,
+    "n_spikes": 179,
+    "post_spike_signed_cumret_30": 0.0013576468705886777
+  },
+  "SOLAR_FLAMES": {
+    "kyle_lambda": -0.0007193598963842547,
+    "kyle_r2": 0.0025378463312375294,
+    "kyle_p": 0.1730577784904727,
+    "n_spikes": 179,
+    "post_spike_signed_cumret_30": 0.000940593056439027
+  },
+  "SOLAR_WINDS": {
+    "kyle_lambda": 0.00032779414329299787,
+    "kyle_r2": 0.00029140491435190863,
+    "kyle_p": 0.6445020087556993,
+    "n_spikes": 179,
+    "post_spike_signed_cumret_30": 0.000718819783860362
+  }
+}

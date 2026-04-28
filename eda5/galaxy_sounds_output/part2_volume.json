@@ -1,0 +1,42 @@
+{
+  "BLACK_HOLES": {
+    "vol_acf_lag1": -0.02615753679499965,
+    "corr_absret_vol": 0.03140715750694061,
+    "logit_coef_log_v": 0.23929137617932852,
+    "logit_train_acc": 0.5306957708049114,
+    "amihud": 0.00041393514281767017,
+    "n_trade_ticks": 733
+  },
+  "DARK_MATTER": {
+    "vol_acf_lag1": -0.02615753679499965,
+    "corr_absret_vol": 0.017195714202940644,
+    "logit_coef_log_v": -0.11367165534995424,
+    "logit_train_acc": 0.5156889495225102,
+    "amihud": 0.000417986108989554,
+    "n_trade_ticks": 733
+  },
+  "PLANETARY_RINGS": {
+    "vol_acf_lag1": -0.02615753679499965,
+    "corr_absret_vol": 0.04441749342326157,
+    "logit_coef_log_v": 0.06267937309673817,
+    "logit_train_acc": 0.5306957708049114,
+    "amihud": 0.00040510545678026965,
+    "n_trade_ticks": 733
+  },
+  "SOLAR_FLAMES": {
+    "vol_acf_lag1": -0.02615753679499965,
+    "corr_absret_vol": -0.04693427473662028,
+    "logit_coef_log_v": 0.018903361975107773,
+    "logit_train_acc": 0.5061391541609823,
+    "amihud": 0.00043564830742946596,
+    "n_trade_ticks": 733
+  },
+  "SOLAR_WINDS": {
+    "vol_acf_lag1": -0.02615753679499965,
+    "corr_absret_vol": -0.02431646091378619,
+    "logit_coef_log_v": -0.22771955807711514,
+    "logit_train_acc": 0.5225102319236017,
+    "amihud": 0.00044144119801119543,
+    "n_trade_ticks": 733
+  }
+}

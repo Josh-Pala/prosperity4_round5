@@ -1,0 +1,292 @@
+[t+   4.1s] loading data...
+[t+   7.1s] mid (30000, 5), ret (29999, 5), vol (30000, 5), trades (3665, 9)
+[t+   7.1s] subsampled (step=5) mid_sub (6000, 5)
+
+======================================================================
+PART 1 — RAW DATA HEALTH CHECK
+======================================================================
+
+[1.1] Shape / missing
+  prices_long  : (150000, 18)
+  mid wide     : (30000, 5)
+  trades       : (3665, 9)
+  duplicate t  : 0
+  missing in mid:
+product
+SLEEP_POD_SUEDE        0
+SLEEP_POD_LAMB_WOOL    0
+SLEEP_POD_POLYESTER    0
+SLEEP_POD_NYLON        0
+SLEEP_POD_COTTON       0
+
+[1.1] Per-symbol descriptives
+                           mean_p       std_p   min_p    max_p    skew_p    kurt_p    mean_r     std_r    skew_r    kurt_r
+product                                                                                                                   
+SLEEP_POD_SUEDE      11397.420433  899.946472  9596.5  12736.5 -0.666973 -1.041372  0.000006  0.000999 -0.018326 -0.012913
+SLEEP_POD_LAMB_WOOL  10701.441717  413.169049  9813.5  12036.0  0.300153 -0.419834  0.000003  0.001000  0.001188  0.029886
+SLEEP_POD_POLYESTER  11840.560950  977.539539  9686.5  13437.0 -0.418993 -0.901464  0.000006  0.001001  0.021773 -0.029663
+SLEEP_POD_NYLON       9636.472567  508.728535  8546.0  11023.0  0.353677 -0.147021  0.000002  0.000997 -0.005553  0.018384
+SLEEP_POD_COTTON     11527.613967  887.692891  9838.5  13529.5  0.388390 -0.794809  0.000004  0.001009 -0.018199 -0.008448
+[t+   7.1s] done 1.1
+[t+  10.8s] done 1.2 plots
+/Users/glaucorampone/Progetti/IMC Prosperity/prosperity4_round5/eda5/sleep_pod/eda_sleep_pod.py:91: InterpolationWarning: The test statistic is outside of the range of p-values available in the
+look-up table. The actual p-value is smaller than the p-value returned.
+
+  return kpss(x, regression="c", nlags=20)[1]   # fixed lag — much faster
+/Users/glaucorampone/Progetti/IMC Prosperity/prosperity4_round5/eda5/sleep_pod/eda_sleep_pod.py:91: InterpolationWarning: The test statistic is outside of the range of p-values available in the
+look-up table. The actual p-value is greater than the p-value returned.
+
+  return kpss(x, regression="c", nlags=20)[1]   # fixed lag — much faster
+/Users/glaucorampone/Progetti/IMC Prosperity/prosperity4_round5/eda5/sleep_pod/eda_sleep_pod.py:91: InterpolationWarning: The test statistic is outside of the range of p-values available in the
+look-up table. The actual p-value is smaller than the p-value returned.
+
+  return kpss(x, regression="c", nlags=20)[1]   # fixed lag — much faster
+/Users/glaucorampone/Progetti/IMC Prosperity/prosperity4_round5/eda5/sleep_pod/eda_sleep_pod.py:91: InterpolationWarning: The test statistic is outside of the range of p-values available in the
+look-up table. The actual p-value is greater than the p-value returned.
+
+  return kpss(x, regression="c", nlags=20)[1]   # fixed lag — much faster
+/Users/glaucorampone/Progetti/IMC Prosperity/prosperity4_round5/eda5/sleep_pod/eda_sleep_pod.py:91: InterpolationWarning: The test statistic is outside of the range of p-values available in the
+look-up table. The actual p-value is smaller than the p-value returned.
+
+  return kpss(x, regression="c", nlags=20)[1]   # fixed lag — much faster
+/Users/glaucorampone/Progetti/IMC Prosperity/prosperity4_round5/eda5/sleep_pod/eda_sleep_pod.py:91: InterpolationWarning: The test statistic is outside of the range of p-values available in the
+look-up table. The actual p-value is greater than the p-value returned.
+
+  return kpss(x, regression="c", nlags=20)[1]   # fixed lag — much faster
+/Users/glaucorampone/Progetti/IMC Prosperity/prosperity4_round5/eda5/sleep_pod/eda_sleep_pod.py:91: InterpolationWarning: The test statistic is outside of the range of p-values available in the
+look-up table. The actual p-value is smaller than the p-value returned.
+
+  return kpss(x, regression="c", nlags=20)[1]   # fixed lag — much faster
+/Users/glaucorampone/Progetti/IMC Prosperity/prosperity4_round5/eda5/sleep_pod/eda_sleep_pod.py:91: InterpolationWarning: The test statistic is outside of the range of p-values available in the
+look-up table. The actual p-value is greater than the p-value returned.
+
+  return kpss(x, regression="c", nlags=20)[1]   # fixed lag — much faster
+/Users/glaucorampone/Progetti/IMC Prosperity/prosperity4_round5/eda5/sleep_pod/eda_sleep_pod.py:91: InterpolationWarning: The test statistic is outside of the range of p-values available in the
+look-up table. The actual p-value is smaller than the p-value returned.
+
+  return kpss(x, regression="c", nlags=20)[1]   # fixed lag — much faster
+/Users/glaucorampone/Progetti/IMC Prosperity/prosperity4_round5/eda5/sleep_pod/eda_sleep_pod.py:91: InterpolationWarning: The test statistic is outside of the range of p-values available in the
+look-up table. The actual p-value is greater than the p-value returned.
+
+  return kpss(x, regression="c", nlags=20)[1]   # fixed lag — much faster
+
+[1.3] Stationarity — ADF & KPSS (subsampled, step=5)
+           ADF_price_p  KPSS_price_p  ADF_ret_p  KPSS_ret_p
+symbol                                                     
+SUEDE           0.4852          0.01        0.0         0.1
+LAMB_WOOL       0.0942          0.01        0.0         0.1
+POLYESTER       0.3353          0.01        0.0         0.1
+NYLON           0.7615          0.01        0.0         0.1
+COTTON          0.3902          0.01        0.0         0.1
+[t+ 123.3s] done 1.3
+
+======================================================================
+PART 2 — SINGLE-INSTRUMENT STRUCTURE
+======================================================================
+
+[2.1] Ljung-Box on log-returns (lags 5,10,20)
+            LB5_p  LB10_p  LB20_p  ACF_lag1
+symbol                                     
+SUEDE      0.5858  0.1374  0.4651   -0.0067
+LAMB_WOOL  0.2694  0.7539  0.1059    0.0039
+POLYESTER  0.8703  0.9944  0.9516   -0.0012
+NYLON      0.8157  0.7301  0.6398    0.0008
+COTTON     0.3989  0.6588  0.5066   -0.0024
+[t+ 827.6s] done 2.1
+
+[2.2] Hurst exponent (variance scaling)
+            Hurst
+symbol           
+SUEDE      0.4888
+LAMB_WOOL  0.5167
+POLYESTER  0.4898
+NYLON      0.4957
+COTTON     0.5139
+[t+ 828.3s] done 2.2
+
+[2.3] ARCH effects + GARCH(1,1) on subsampled returns
+           LB_sq10_p   alpha    beta  alpha+beta
+symbol                                          
+SUEDE         0.2803  0.0047  0.0000      0.0047
+LAMB_WOOL     0.7754  0.0048  0.7274      0.7322
+POLYESTER     0.2415  0.0004  0.9171      0.9175
+NYLON         0.1727  0.0100  0.8900      0.9000
+COTTON        0.8464  0.0017  0.6265      0.6281
+[t+1671.0s] done 2.3
+
+[2.4] Return distribution: skew, ex-kurt, JB p
+             skew  ex_kurt    JB_p
+symbol                            
+SUEDE     -0.0183  -0.0131  0.3879
+LAMB_WOOL  0.0012   0.0297  0.5746
+POLYESTER  0.0218  -0.0299  0.1751
+NYLON     -0.0056   0.0182  0.7530
+COTTON    -0.0182  -0.0086  0.4170
+[t+1671.8s] done 2.4
+
+[2.5] Volume diagnostics
+           vol_LB10_p  corr|r|,v  logit_coef  logit_acc    Amihud  n_trade_ticks
+symbol                                                                          
+SUEDE        0.789001  -0.007428   -0.103290   0.523207  0.000417            733
+LAMB_WOOL    0.789001   0.007837   -0.042421   0.504923  0.000410            733
+POLYESTER    0.789001  -0.003241    0.195544   0.538354  0.000418            733
+NYLON        0.789001  -0.009878   -0.370590   0.531646  0.000405            733
+COTTON       0.789001  -0.000613   -0.008471   0.510402  0.000440            733
+[t+1840.4s] done 2.5
+
+======================================================================
+PART 3 — CROSS-INSTRUMENT STRUCTURE
+======================================================================
+
+[3.1] Pearson
+product              SLEEP_POD_SUEDE  SLEEP_POD_LAMB_WOOL  SLEEP_POD_POLYESTER  SLEEP_POD_NYLON  SLEEP_POD_COTTON
+product                                                                                                          
+SLEEP_POD_SUEDE                1.000                0.006                0.005            0.007            -0.000
+SLEEP_POD_LAMB_WOOL            0.006                1.000                0.009            0.004            -0.003
+SLEEP_POD_POLYESTER            0.005                0.009                1.000            0.001            -0.008
+SLEEP_POD_NYLON                0.007                0.004                0.001            1.000             0.006
+SLEEP_POD_COTTON              -0.000               -0.003               -0.008            0.006             1.000
+
+[3.1] Spearman
+product              SLEEP_POD_SUEDE  SLEEP_POD_LAMB_WOOL  SLEEP_POD_POLYESTER  SLEEP_POD_NYLON  SLEEP_POD_COTTON
+product                                                                                                          
+SLEEP_POD_SUEDE                1.000                0.007                0.005            0.006             0.001
+SLEEP_POD_LAMB_WOOL            0.007                1.000                0.007            0.004            -0.006
+SLEEP_POD_POLYESTER            0.005                0.007                1.000            0.001            -0.009
+SLEEP_POD_NYLON                0.006                0.004                0.001            1.000             0.003
+SLEEP_POD_COTTON               0.001               -0.006               -0.009            0.003             1.000
+
+[3.1] Rolling-corr stability (mean & std)
+                     mean_rc  std_rc
+pair                                
+SUEDE-LAMB_WOOL        0.008   0.144
+SUEDE-POLYESTER        0.006   0.148
+SUEDE-NYLON            0.007   0.143
+SUEDE-COTTON          -0.001   0.141
+LAMB_WOOL-POLYESTER    0.008   0.142
+LAMB_WOOL-NYLON        0.005   0.141
+LAMB_WOOL-COTTON      -0.004   0.140
+POLYESTER-NYLON        0.000   0.148
+POLYESTER-COTTON      -0.008   0.140
+NYLON-COTTON           0.007   0.138
+[t+1841.7s] done 3.1
+
+[3.2] Engle-Granger pairwise cointegration (subsampled, step=5)
+                       EG_p  hedge_beta  spread_ADF_p  half_life  spread_std
+pair                                                                        
+SUEDE-LAMB_WOOL      0.6912     -0.1289        0.4475  1167.5253      0.0813
+SUEDE-POLYESTER      0.1928      0.8329        0.0709   277.8493      0.0410
+SUEDE-NYLON          0.6392      0.2791        0.3903  1050.4567      0.0801
+SUEDE-COTTON         0.6327      0.7555        0.3836   624.1634      0.0576
+LAMB_WOOL-POLYESTER  0.2162     -0.0206        0.0822   340.9995      0.0384
+LAMB_WOOL-NYLON      0.0316      0.3677        0.0077   225.0347      0.0332
+LAMB_WOOL-COTTON     0.2451      0.0336        0.0973   350.3645      0.0384
+POLYESTER-NYLON      0.4165      0.4570        0.2007   795.9244      0.0810
+POLYESTER-COTTON     0.1093      0.9681        0.0346   232.5226      0.0411
+NYLON-COTTON         0.7813      0.2699        0.5602   773.2040      0.0483
+
+[3.2] Johansen test (full basket, log prices, subsampled)
+  trace stats :  [51.774 30.123 15.55   7.879  3.046]
+  crit 95%    :  [69.819 47.854 29.796 15.494  3.842]
+  cointegration rank @95%: 0
+
+[3.2] Best cointegrated pair: LAMB_WOOL-NYLON
+[t+1867.6s] done 3.2
+
+[3.3] Granger causality (best lag p-value, max lag=5, step=5 subsample)
+   leader  follower  best_p
+    NYLON    COTTON 0.01411
+POLYESTER     SUEDE 0.08984
+LAMB_WOOL     SUEDE 0.09395
+   COTTON POLYESTER 0.09526
+    SUEDE LAMB_WOOL 0.10445
+POLYESTER     NYLON 0.17204
+    NYLON LAMB_WOOL 0.17766
+LAMB_WOOL    COTTON 0.18500
+LAMB_WOOL     NYLON 0.20748
+   COTTON     NYLON 0.22500
+LAMB_WOOL POLYESTER 0.26076
+    NYLON POLYESTER 0.26771
+POLYESTER LAMB_WOOL 0.29480
+POLYESTER    COTTON 0.31680
+    SUEDE     NYLON 0.33607
+
+[3.3] Strongest Granger pair: NYLON → COTTON, p=0.01411
+[t+1868.4s] done 3.3
+
+[3.4] Kyle lambda (price change ~ signed volume)
+             lambda        r2    n
+symbol                            
+SUEDE      0.000263  0.541947  717
+LAMB_WOOL  0.000285  0.572563  709
+POLYESTER  0.000271  0.549539  717
+NYLON      0.000258  0.524610  717
+COTTON     0.000276  0.524684  719
+[t+1868.6s] done 3.4
+
+======================================================================
+PART 4 — STRATEGY SIGNAL BACKTESTS
+======================================================================
+
+[4.1] Mean reversion (z-score window=50, in ±1.5, out |z|<0.3)
+           Sharpe  WinRate  MeanPnL    MaxDD  Trades
+symbol                                              
+SUEDE       0.090    0.678    1.883 -14510.0     762
+LAMB_WOOL  -2.242    0.653  -44.453 -40660.0     758
+POLYESTER   1.135    0.703   23.477 -11510.0     788
+NYLON       0.598    0.694   10.244 -15265.0     780
+COTTON     -1.331    0.654  -28.351 -28180.0     767
+[t+1868.7s] done 4.1
+
+[4.2] Momentum grid — best (N,M) per symbol
+            N   M  Sharpe  WinRate  MeanPnL    MaxDD  Trades
+symbol                                                      
+SUEDE       5  20   1.478    0.489   38.702 -13270.0     755
+LAMB_WOOL   5   5   2.049    0.367   12.874 -14010.0    2947
+POLYESTER  20  20   1.129    0.371   31.676 -17305.0     734
+NYLON      10  10   1.450    0.367   16.422 -11325.0    1470
+COTTON     20  20   1.097    0.351   30.432 -15120.0     729
+[t+1869.7s] done 4.2
+
+[4.3] Volume-triggered momentum (vol > 2× MA20, hold 5)
+           Sharpe  WinRate  MeanPnL    MaxDD  Trades
+symbol                                              
+SUEDE      -1.344    0.457  -13.344 -11150.0     652
+LAMB_WOOL  -0.762    0.488   -7.165  -9670.0     649
+POLYESTER  -1.199    0.491  -12.774 -12365.0     656
+NYLON      -0.898    0.460   -7.595  -5610.0     657
+COTTON      0.628    0.494    6.471 -10520.0     656
+[t+1869.9s] done 4.3
+
+[4.4] Lead-lag cross signal — top Granger pair
+  NYLON → COTTON: Sharpe=0.033 WR=0.493 MeanPnL=0.044 DD=-17900.0 N=14963
+[t+1869.9s] done 4.4
+
+[4.5] Pairs / stat-arb on best cointegrated pair
+  Pair LAMB_WOOL-NYLON  β=0.368  Sharpe=2.845  WR=1.000  MeanPnL=4892.167  DD=-12046.0  Trades=6
+[t+1870.0s] done 4.5
+
+======================================================================
+PART 5 — STRATEGY VERDICT TABLE
+======================================================================
+         Symbol             Strategy  Sharpe  WinRate  MeanPnL    MaxDD     Verdict
+          SUEDE MeanRev z-score (50)   0.090    0.678    1.883 -14510.0     NO EDGE
+      LAMB_WOOL MeanRev z-score (50)  -2.242    0.653  -44.453 -40660.0       AVOID
+      POLYESTER MeanRev z-score (50)   1.135    0.703   23.477 -11510.0   WEAK EDGE
+          NYLON MeanRev z-score (50)   0.598    0.694   10.244 -15265.0     NO EDGE
+         COTTON MeanRev z-score (50)  -1.331    0.654  -28.351 -28180.0       AVOID
+          SUEDE    Momentum N=5 M=20   1.478    0.489   38.702 -13270.0   WEAK EDGE
+      LAMB_WOOL     Momentum N=5 M=5   2.049    0.367   12.874 -14010.0 STRONG EDGE
+      POLYESTER   Momentum N=20 M=20   1.129    0.371   31.676 -17305.0   WEAK EDGE
+          NYLON   Momentum N=10 M=10   1.450    0.367   16.422 -11325.0   WEAK EDGE
+         COTTON   Momentum N=20 M=20   1.097    0.351   30.432 -15120.0   WEAK EDGE
+          SUEDE Volume-trig momentum  -1.344    0.457  -13.344 -11150.0       AVOID
+      LAMB_WOOL Volume-trig momentum  -0.762    0.488   -7.165  -9670.0       AVOID
+      POLYESTER Volume-trig momentum  -1.199    0.491  -12.774 -12365.0       AVOID
+          NYLON Volume-trig momentum  -0.898    0.460   -7.595  -5610.0       AVOID
+         COTTON Volume-trig momentum   0.628    0.494    6.471 -10520.0     NO EDGE
+         COTTON  Lead-lag from NYLON   0.033    0.493    0.044 -17900.0     NO EDGE
+LAMB_WOOL-NYLON Pairs spread z-score   2.845    1.000 4892.167 -12046.0     NO EDGE
+[t+1870.0s] done verdict
+
+DONE — Plots written to: /Users/glaucorampone/Progetti/IMC Prosperity/prosperity4_round5/eda5/sleep_pod

@@ -1,0 +1,37 @@
+{
+  "BLACK_HOLES": {
+    "ADF_price_pvalue": 0.8618093530343767,
+    "ADF_logret_pvalue": 0.0,
+    "KPSS_price_pvalue": 0.01,
+    "KPSS_logret_pvalue": 0.1,
+    "I(1)?": true
+  },
+  "DARK_MATTER": {
+    "ADF_price_pvalue": 0.06730390561039915,
+    "ADF_logret_pvalue": 0.0,
+    "KPSS_price_pvalue": 0.01,
+    "KPSS_logret_pvalue": 0.1,
+    "I(1)?": true
+  },
+  "PLANETARY_RINGS": {
+    "ADF_price_pvalue": 0.7383703914845653,
+    "ADF_logret_pvalue": 0.0,
+    "KPSS_price_pvalue": 0.01,
+    "KPSS_logret_pvalue": 0.1,
+    "I(1)?": true
+  },
+  "SOLAR_FLAMES": {
+    "ADF_price_pvalue": 0.06157124970678015,
+    "ADF_logret_pvalue": 0.0,
+    "KPSS_price_pvalue": 0.01,
+    "KPSS_logret_pvalue": 0.1,
+    "I(1)?": true
+  },
+  "SOLAR_WINDS": {
+    "ADF_price_pvalue": 0.3912261830672553,
+    "ADF_logret_pvalue": 0.0,
+    "KPSS_price_pvalue": 0.01,
+    "KPSS_logret_pvalue": 0.1,
+    "I(1)?": true
+  }
+}

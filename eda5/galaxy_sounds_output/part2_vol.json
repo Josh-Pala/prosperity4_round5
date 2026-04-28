@@ -1,0 +1,32 @@
+{
+  "BLACK_HOLES": {
+    "LB_sq_lag10_p": 0.23185997964611665,
+    "garch_alpha": 2.6988854428669984e-05,
+    "garch_beta": 0.8153594988601441,
+    "garch_persistence": 0.8153864877145728
+  },
+  "DARK_MATTER": {
+    "LB_sq_lag10_p": 0.6015363828260768,
+    "garch_alpha": 0.007298543700123884,
+    "garch_beta": 0.856925025058894,
+    "garch_persistence": 0.8642235687590178
+  },
+  "PLANETARY_RINGS": {
+    "LB_sq_lag10_p": 0.7277820037614209,
+    "garch_alpha": 0.017102434653524626,
+    "garch_beta": 0.35279458708610095,
+    "garch_persistence": 0.3698970217396256
+  },
+  "SOLAR_FLAMES": {
+    "LB_sq_lag10_p": 0.9753394524116491,
+    "garch_alpha": 5.212091148621702e-13,
+    "garch_beta": 0.0,
+    "garch_persistence": 5.212091148621702e-13
+  },
+  "SOLAR_WINDS": {
+    "LB_sq_lag10_p": 0.04759996147122495,
+    "garch_alpha": 0.007528014289649018,
+    "garch_beta": 6.726268214822254e-12,
+    "garch_persistence": 0.007528014296375286
+  }
+}
