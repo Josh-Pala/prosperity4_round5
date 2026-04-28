@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(/Users/joshpala/anaconda3/bin/pip install *)",
+      "Bash(/Users/joshpala/anaconda3/bin/python -c \"import ruptures; import arch; print\\('all ok'\\)\")",
+      "Bash(python3 -c \"import json; json.load\\(open\\('/Users/joshpala/Desktop/Prosperity/prosperity4_round5/eda5/eda5_galaxy_sound_recorders.ipynb'\\)\\); print\\('valid json'\\)\")",
+      "Bash(git -C /Users/joshpala/Desktop/Prosperity/prosperity4_round5 status)",
+      "Bash(gh auth *)",
+      "Bash(git --version)",
+      "Bash(git rm *)",
+      "Bash(git add *)",
+      "Bash(git reset *)"
+    ]
+  }
+}
