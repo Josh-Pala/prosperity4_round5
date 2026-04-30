@@ -1,15 +1,14 @@
 """
 FINAL_GLAUCO — final submission for IMC Prosperity 4 Round 5.
 
-OXYGEN_SHAKE changes (this session):
-  - MM offset 1 -> 0 (join best instead of improve+1) on all 5 OXY symbols
-    (+7.55k, 787.931 -> 795.482).
-  - MINT cross-family fair-value taker: fair = α + β·PANEL basket. Take when
-    |bid/ask - fair| > 200 ticks. PANEL-only basket avoids the overfitting of
-    larger baskets (OOS resid sd 230-440 vs 430-660 for top8). +55.99k
-    (795.482 -> 851.472). MINT goes from +0.95k -> +56.94k across 3 days.
-  - Pair-trading rejected (mid-price simulator over-estimates with wide BBO;
-    see eda5/oxygen_shake/VERDICT.md and MM_VERDICT.md).
+OXYGEN_SHAKE change (this session):
+  - MM offset 1 -> 0 (join best instead of improve+1) on all 5 OXY symbols.
+  - Rationale: BBO spread is 12-15 ticks, all market trades happen exactly at
+    BBO, so quoting at bb vs bb+1 fills the same orders but captures 1 tick
+    more per round-trip per side.
+  - Backtester gain: +7.55k (787.931 -> 795.482). Pair-trading was rejected
+    in the same session (pair scanner over-estimates with wide BBO; see
+    eda5/oxygen_shake/VERDICT.md and MM_VERDICT.md).
 
 SLEEP_POD change (prior session):
   - POLY-COTTON pair: entry_z 1.8 -> 1.0 (+12.0k, more frequent re-entries).
@@ -146,10 +145,9 @@ UV_AMBER_BETAS = {
 }
 UV_AMBER_TAKE_THRESHOLD = 400
 
-# OXYGEN_SHAKE_MINT fair-value model (eda5/oxygen_shake/mint_deep_dive.py).
-# PANEL-only basket: full sample R²=0.644, in-sample resid_sd=303.
-# Holdout sd 230-440 (more stable than top8's 430-660).
-# Threshold 200 was the backtest peak (sweep 100-400, see MINT_VERDICT.md).
+# OXYGEN_SHAKE_MINT fair-value model (eda5/oxygen_shake/mint_deep_dive.py)
+# 8-symbol basket OLS, R²=0.675, resid_sd=290, half-life 798 ticks.
+# Threshold: |resid| > 300 hits ~30% of ticks, signal mean-reverts at corr -0.47 / 500 ticks.
 MINT_INTERCEPT = 7551.93
 MINT_BETAS = {
     "PANEL_2X2": 0.3942,
@@ -381,9 +379,9 @@ class Trader:
                     if extra:
                         result["UV_VISOR_AMBER"] = existing + extra
 
-        # ---- OXYGEN_SHAKE_MINT cross-family fair-value edge taker ----
-        # Lifts MINT from +0.95k -> +56.94k in 3-day backtest. Same template as
-        # AMBER: take when bid/ask deviates from PANEL-implied fair by > 200.
+        # ---- OXYGEN_SHAKE_MINT fair-value edge taker ----
+        # Same template as AMBER. Basket is cross-family (PANEL/ROBOT/SLEEP_POD/
+        # UV_VISOR/MICROCHIP/TRANSLATOR), R²=0.675.
         mint_dep = state.order_depths.get("OXYGEN_SHAKE_MINT")
         if mint_dep is not None and "OXYGEN_SHAKE_MINT" not in engaged_pair_legs:
             other_mids = {}

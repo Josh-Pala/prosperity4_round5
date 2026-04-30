@@ -159,6 +159,15 @@ MINT_BETAS = {
 MINT_TAKE_THRESHOLD = 200
 
 
+
+# OXYGEN_SHAKE_GARLIC fair-value model (pebbles). See eda5/oxygen_shake/garlic/.
+GARLIC_INTERCEPT = 16165.04
+GARLIC_BETAS = {
+    "PEBBLES_S": -0.5554,
+    "PEBBLES_XL": +0.1388,
+    "PEBBLES_XS": -0.1505,
+}
+GARLIC_TAKE_THRESHOLD = 250
 def mid_of(d: OrderDepth):
     if not d.buy_orders or not d.sell_orders:
         return None
@@ -421,6 +430,44 @@ class Trader:
                     if extra:
                         result["OXYGEN_SHAKE_MINT"] = existing + extra
 
+
+        # ---- OXYGEN_SHAKE_GARLIC cross-family fair-value edge taker (pebbles) ----
+        garlic_dep = state.order_depths.get("OXYGEN_SHAKE_GARLIC")
+        if garlic_dep is not None and "OXYGEN_SHAKE_GARLIC" not in engaged_pair_legs:
+            other_mids_g = {}
+            for s in GARLIC_BETAS:
+                d = state.order_depths.get(s)
+                if d is not None:
+                    m = mid_of(d)
+                    if m is not None:
+                        other_mids_g[s] = m
+            if len(other_mids_g) == len(GARLIC_BETAS):
+                fair = GARLIC_INTERCEPT + sum(
+                    GARLIC_BETAS[s] * other_mids_g[s] for s in GARLIC_BETAS
+                )
+                bb, ba = best_levels(garlic_dep)
+                if bb is not None and ba is not None:
+                    pos_g = state.position.get("OXYGEN_SHAKE_GARLIC", 0)
+                    existing = result.get("OXYGEN_SHAKE_GARLIC", [])
+                    extra: List[Order] = []
+                    if fair - ba > GARLIC_TAKE_THRESHOLD:
+                        cap = LIMIT - pos_g
+                        for o in existing:
+                            if o.quantity > 0:
+                                cap -= o.quantity
+                        qty = min(5, max(0, cap))
+                        if qty > 0:
+                            extra.append(Order("OXYGEN_SHAKE_GARLIC", ba, qty))
+                    elif bb - fair > GARLIC_TAKE_THRESHOLD:
+                        cap = LIMIT + pos_g
+                        for o in existing:
+                            if o.quantity < 0:
+                                cap -= -o.quantity
+                        qty = min(5, max(0, cap))
+                        if qty > 0:
+                            extra.append(Order("OXYGEN_SHAKE_GARLIC", bb, -qty))
+                    if extra:
+                        result["OXYGEN_SHAKE_GARLIC"] = existing + extra
         # ---- PEBBLES dedicated block (v11) — passive entry on pair legs ----
         books = {}
         peb_ok = True

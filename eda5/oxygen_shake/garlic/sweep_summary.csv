@@ -1,0 +1,13 @@
+file,garlic,total,n,delta_vs_base
+oxy_garlic_top4_t100,59668,900228,3,48756
+oxy_garlic_pebbles_t250,59158,899720,3,48248
+oxy_garlic_pebbles_t150,57878,898440,3,46968
+oxy_garlic_pebbles_t200,56979,897541,3,46069
+oxy_garlic_pebbles_t300,56927,897489,3,46017
+oxy_garlic_top4_t300,54509,895070,3,43598
+oxy_garlic_top4_t250,54047,894608,3,43136
+oxy_garlic_top4_t200,54003,894566,3,43094
+oxy_garlic_pebbles_t400,51164,891725,3,40253
+oxy_garlic_top4_t150,51007,891568,3,40096
+oxy_garlic_pebbles_t100,50742,891302,3,39830
+oxy_garlic_top4_t400,48502,889064,3,37592

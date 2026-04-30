@@ -158,6 +158,19 @@ MINT_BETAS = {
 }
 MINT_TAKE_THRESHOLD = 200
 
+# OXYGEN_SHAKE_EVENING_BREATH fair-value model (eda5/oxygen_shake/evening_breath/eb_deep_dive.py).
+# top5 basket (top |level corr|): R^2=0.42, resid_sd=306, half-life 603 ticks.
+# Walk-forward: sd_oos d2/d3/d4 = 479/392/234. Higher OOS noise than MINT.
+EB_INTERCEPT = 7271.7591
+EB_BETAS = {
+    "GALAXY_SOUNDS_SOLAR_WINDS": 0.123889,
+    "GALAXY_SOUNDS_SOLAR_FLAMES": -0.233740,
+    "TRANSLATOR_GRAPHITE_MIST": -0.013202,
+    "SLEEP_POD_NYLON": 0.172027,
+    "PEBBLES_L": 0.174485,
+}
+EB_TAKE_THRESHOLD = 800
+
 
 def mid_of(d: OrderDepth):
     if not d.buy_orders or not d.sell_orders:
@@ -420,6 +433,45 @@ class Trader:
                             extra.append(Order("OXYGEN_SHAKE_MINT", bb, -qty))
                     if extra:
                         result["OXYGEN_SHAKE_MINT"] = existing + extra
+
+        # ---- OXYGEN_SHAKE_EVENING_BREATH cross-family fair-value edge taker ----
+        # top5 basket: no symbol overlap with MINT's PANEL basket -> no position contention.
+        eb_dep = state.order_depths.get("OXYGEN_SHAKE_EVENING_BREATH")
+        if eb_dep is not None and "OXYGEN_SHAKE_EVENING_BREATH" not in engaged_pair_legs:
+            other_mids = {}
+            for s in EB_BETAS:
+                d = state.order_depths.get(s)
+                if d is not None:
+                    m = mid_of(d)
+                    if m is not None:
+                        other_mids[s] = m
+            if len(other_mids) == len(EB_BETAS):
+                fair = EB_INTERCEPT + sum(
+                    EB_BETAS[s] * other_mids[s] for s in EB_BETAS
+                )
+                bb, ba = best_levels(eb_dep)
+                if bb is not None and ba is not None:
+                    pos_eb = state.position.get("OXYGEN_SHAKE_EVENING_BREATH", 0)
+                    existing = result.get("OXYGEN_SHAKE_EVENING_BREATH", [])
+                    extra: List[Order] = []
+                    if fair - ba > EB_TAKE_THRESHOLD:
+                        cap = LIMIT - pos_eb
+                        for o in existing:
+                            if o.quantity > 0:
+                                cap -= o.quantity
+                        qty = min(5, max(0, cap))
+                        if qty > 0:
+                            extra.append(Order("OXYGEN_SHAKE_EVENING_BREATH", ba, qty))
+                    elif bb - fair > EB_TAKE_THRESHOLD:
+                        cap = LIMIT + pos_eb
+                        for o in existing:
+                            if o.quantity < 0:
+                                cap -= -o.quantity
+                        qty = min(5, max(0, cap))
+                        if qty > 0:
+                            extra.append(Order("OXYGEN_SHAKE_EVENING_BREATH", bb, -qty))
+                    if extra:
+                        result["OXYGEN_SHAKE_EVENING_BREATH"] = existing + extra
 
         # ---- PEBBLES dedicated block (v11) — passive entry on pair legs ----
         books = {}

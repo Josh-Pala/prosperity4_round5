@@ -1,0 +1,23 @@
+Top 8 level correlations with OXYGEN_SHAKE_MORNING_BREATH:
+  PEBBLES_M                           corr=0.858
+  ROBOT_MOPPING                       corr=0.817
+  PANEL_1X4                           corr=0.811
+  ROBOT_IRONING                       corr=0.801
+  ROBOT_VACUUMING                     corr=0.792
+  PEBBLES_XS                          corr=0.774
+  GALAXY_SOUNDS_SOLAR_WINDS           corr=0.767
+  MICROCHIP_RECTANGLE                 corr=0.756
+
+OLS coefficients (top8 full sample):
+  intercept = 14202.99
+  PEBBLES_M                           beta=-0.3618
+  ROBOT_MOPPING                       beta=-0.1246
+  PANEL_1X4                           beta=+0.1088
+  ROBOT_IRONING                       beta=-0.0479
+  ROBOT_VACUUMING                     beta=-0.0220
+  PEBBLES_XS                          beta=+0.0663
+  GALAXY_SOUNDS_SOLAR_WINDS           beta=-0.1323
+  MICROCHIP_RECTANGLE                 beta=+0.1579
+
+Residual: mean=-0.00  sd=264.77  R²=0.8355
+Residual half-life: 623 ticks

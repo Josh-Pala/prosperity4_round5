@@ -1,0 +1,57 @@
+Walk-forward holdout (train 2 days, test 3rd) — target = OXYGEN_SHAKE_MORNING_BREATH
+
+--- Basket: top8  (PEBBLES_M, ROBOT_MOPPING, PANEL_1X4, ROBOT_IRONING, ROBOT_VACUUMING, PEBBLES_XS, GALAXY_SOUNDS_SOLAR_WINDS, MICROCHIP_RECTANGLE) ---
+  Full-sample: R²=0.8355  sd_in=264.8
+  Coefs: intercept=14202.99  PEBBLES_M=-0.3618  ROBOT_MOPPING=-0.1246  PANEL_1X4=+0.1088  ROBOT_IRONING=-0.0479  ROBOT_VACUUMING=-0.0220  PEBBLES_XS=+0.0663  GALAXY_SOUNDS_SOLAR_WINDS=-0.1323  MICROCHIP_RECTANGLE=+0.1579
+  hold=d2: sd_in=225.6  sd_oos=354.1  mean_oos=-100.4
+  hold=d3: sd_in=228.2  sd_oos=467.1  mean_oos=-46.6
+  hold=d4: sd_in=263.1  sd_oos=299.6  mean_oos=+492.0
+
+--- Basket: top5  (PEBBLES_M, ROBOT_MOPPING, PANEL_1X4, ROBOT_IRONING, ROBOT_VACUUMING) ---
+  Full-sample: R²=0.8093  sd_in=285.1
+  Coefs: intercept=13743.35  PEBBLES_M=-0.4320  ROBOT_MOPPING=-0.1948  PANEL_1X4=+0.0422  ROBOT_IRONING=+0.0428  ROBOT_VACUUMING=+0.2274
+  hold=d2: sd_in=258.6  sd_oos=327.2  mean_oos=+176.9
+  hold=d3: sd_in=242.4  sd_oos=382.9  mean_oos=-263.8
+  hold=d4: sd_in=286.8  sd_oos=220.1  mean_oos=+386.0
+
+--- Basket: top4  (PEBBLES_M, ROBOT_MOPPING, PANEL_1X4, ROBOT_IRONING) ---
+  Full-sample: R²=0.7990  sd_in=292.7
+  Coefs: intercept=15885.59  PEBBLES_M=-0.4628  ROBOT_MOPPING=-0.2322  PANEL_1X4=+0.0807  ROBOT_IRONING=+0.0785
+  hold=d2: sd_in=261.0  sd_oos=310.9  mean_oos=+259.5
+  hold=d3: sd_in=252.9  sd_oos=331.6  mean_oos=-323.8
+  hold=d4: sd_in=299.0  sd_oos=248.6  mean_oos=+289.8
+
+--- Basket: top3  (PEBBLES_M, ROBOT_MOPPING, PANEL_1X4) ---
+  Full-sample: R²=0.7971  sd_in=294.0
+  Coefs: intercept=16775.71  PEBBLES_M=-0.4927  ROBOT_MOPPING=-0.2479  PANEL_1X4=+0.1099
+  hold=d2: sd_in=261.0  sd_oos=310.9  mean_oos=+259.0
+  hold=d3: sd_in=267.5  sd_oos=269.4  mean_oos=-297.3
+  hold=d4: sd_in=303.3  sd_oos=261.3  mean_oos=+210.5
+
+--- Basket: PEBBLES-only(2)  (PEBBLES_M, PEBBLES_XS) ---
+  Full-sample: R²=0.7974  sd_in=293.8
+  Coefs: intercept=14866.29  PEBBLES_M=-0.5864  PEBBLES_XS=+0.1556
+  hold=d2: sd_in=292.1  sd_oos=317.9  mean_oos=-205.4
+  hold=d3: sd_in=252.7  sd_oos=378.7  mean_oos=-95.9
+  hold=d4: sd_in=300.0  sd_oos=263.2  mean_oos=+259.8
+
+--- Basket: ROBOT-only(3)  (ROBOT_MOPPING, ROBOT_IRONING, ROBOT_VACUUMING) ---
+  Full-sample: R²=0.7482  sd_in=327.6
+  Coefs: intercept=8198.08  ROBOT_MOPPING=-0.3108  ROBOT_IRONING=+0.2359  ROBOT_VACUUMING=+0.3490
+  hold=d2: sd_in=289.1  sd_oos=400.5  mean_oos=+128.2
+  hold=d3: sd_in=268.3  sd_oos=468.7  mean_oos=-224.4
+  hold=d4: sd_in=354.3  sd_oos=182.8  mean_oos=+408.3
+
+--- Basket: MICROCHIP-only(3)  (MICROCHIP_RECTANGLE, MICROCHIP_SQUARE, MICROCHIP_OVAL) ---
+  Full-sample: R²=0.6885  sd_in=364.3
+  Coefs: intercept=6037.62  MICROCHIP_RECTANGLE=+0.3423  MICROCHIP_SQUARE=-0.0350  MICROCHIP_OVAL=+0.1773
+  hold=d2: sd_in=293.0  sd_oos=461.3  mean_oos=-1021.6
+  hold=d3: sd_in=252.9  sd_oos=568.3  mean_oos=-174.5
+  hold=d4: sd_in=410.1  sd_oos=259.4  mean_oos=+846.9
+
+--- Basket: SLEEP_POD-only(3)  (SLEEP_POD_SUEDE, SLEEP_POD_COTTON, SLEEP_POD_POLYESTER) ---
+  Full-sample: R²=0.5480  sd_in=438.9
+  Coefs: intercept=16825.31  SLEEP_POD_SUEDE=-0.4127  SLEEP_POD_COTTON=-0.3670  SLEEP_POD_POLYESTER=+0.1782
+  hold=d2: sd_in=404.6  sd_oos=715.9  mean_oos=-1144.9
+  hold=d3: sd_in=357.0  sd_oos=594.1  mean_oos=+104.8
+  hold=d4: sd_in=469.3  sd_oos=464.9  mean_oos=+158.8

@@ -1,0 +1,13 @@
+=== TOP8 BASKET: predictors=['GALAXY_SOUNDS_SOLAR_WINDS', 'GALAXY_SOUNDS_SOLAR_FLAMES', 'TRANSLATOR_GRAPHITE_MIST', 'SLEEP_POD_NYLON', 'PEBBLES_L', 'PANEL_1X4', 'UV_VISOR_YELLOW', 'PANEL_1X2'] ===
+OLS coefficients:
+  intercept = 9097.7233
+  GALAXY_SOUNDS_SOLAR_WINDS           beta=+0.2150
+  GALAXY_SOUNDS_SOLAR_FLAMES          beta=-0.2140
+  TRANSLATOR_GRAPHITE_MIST            beta=+0.2911
+  SLEEP_POD_NYLON                     beta=-0.1870
+  PEBBLES_L                           beta=+0.1298
+  PANEL_1X4                           beta=+0.1099
+  UV_VISOR_YELLOW                     beta=-0.3192
+  PANEL_1X2                           beta=+0.0351
+Residual mean=-0.00  sd=265.32  R^2=0.5596
+Residual half-life: 603 ticks

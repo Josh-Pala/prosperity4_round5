@@ -1,0 +1,23 @@
+Top 8 level correlations with OXYGEN_SHAKE_GARLIC:
+  GALAXY_SOUNDS_BLACK_HOLES           corr=0.885
+  PEBBLES_S                           corr=0.884
+  PEBBLES_XL                          corr=0.853
+  MICROCHIP_OVAL                      corr=0.847
+  PANEL_2X4                           corr=0.843
+  PEBBLES_XS                          corr=0.831
+  UV_VISOR_AMBER                      corr=0.822
+  ROBOT_IRONING                       corr=0.816
+
+OLS coefficients (top-8 full sample):
+  intercept = 10561.49
+  GALAXY_SOUNDS_BLACK_HOLES           beta=+0.3906
+  PEBBLES_S                           beta=-0.0298
+  PEBBLES_XL                          beta=+0.2538
+  MICROCHIP_OVAL                      beta=+0.0249
+  PANEL_2X4                           beta=-0.2619
+  PEBBLES_XS                          beta=-0.1345
+  UV_VISOR_AMBER                      beta=+0.1929
+  ROBOT_IRONING                       beta=-0.4583
+
+Residual: mean=-0.00  sd=299.79  R2=0.9011
+Residual half-life: 445 ticks

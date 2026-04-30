@@ -1,0 +1,23 @@
+Top 8 level correlations with OXYGEN_SHAKE_MINT:
+  PANEL_2X2                           corr=0.767
+  ROBOT_LAUNDRY                       corr=0.638
+  SLEEP_POD_COTTON                    corr=0.615
+  UV_VISOR_RED                        corr=0.588
+  PANEL_1X4                           corr=0.587
+  MICROCHIP_TRIANGLE                  corr=0.561
+  TRANSLATOR_GRAPHITE_MIST            corr=0.555
+  PANEL_4X4                           corr=0.541
+
+OLS coefficients:
+  intercept = 10367.21
+  PANEL_2X2                           beta=+0.4235
+  ROBOT_LAUNDRY                       beta=-0.2121
+  SLEEP_POD_COTTON                    beta=-0.1262
+  UV_VISOR_RED                        beta=-0.0851
+  PANEL_1X4                           beta=+0.1778
+  MICROCHIP_TRIANGLE                  beta=-0.0241
+  TRANSLATOR_GRAPHITE_MIST            beta=+0.2236
+  PANEL_4X4                           beta=-0.3843
+
+Residual: mean=0.00  sd=289.66  R²=0.6750
+Residual half-life: 798 ticks

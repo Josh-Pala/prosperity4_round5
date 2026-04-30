@@ -1,23 +1,9 @@
 """
 FINAL_GLAUCO — final submission for IMC Prosperity 4 Round 5.
 
-OXYGEN_SHAKE changes (this session):
-  - MM offset 1 -> 0 (join best instead of improve+1) on all 5 OXY symbols
-    (+7.55k, 787.931 -> 795.482).
-  - MINT cross-family fair-value taker: fair = α + β·PANEL basket. Take when
-    |bid/ask - fair| > 200 ticks. PANEL-only basket avoids the overfitting of
-    larger baskets (OOS resid sd 230-440 vs 430-660 for top8). +55.99k
-    (795.482 -> 851.472). MINT goes from +0.95k -> +56.94k across 3 days.
-  - Pair-trading rejected (mid-price simulator over-estimates with wide BBO;
-    see eda5/oxygen_shake/VERDICT.md and MM_VERDICT.md).
+Built on top of v1 with two surgical optimizations:
 
-SLEEP_POD change (prior session):
-  - POLY-COTTON pair: entry_z 1.8 -> 1.0 (+12.0k, more frequent re-entries).
-  - Added POLY-SUEDE spread @ z=1.8 (unlocks SUEDE leg from -6.3k to +2.9k).
-  - Combined gain: +12.65k (backtester: 775.280 -> 787.931).
-  - Validated via eda5/sleep_pod/pair_scanner_v2.py + combo_sim.py.
-
-PANEL change (prior session):
+PANEL change (this session):
   - PANEL_1X2 removed from MM_UNIVERSE.
   - Rationale: deep EDA (eda5/panel/) showed PANEL mid is a random walk,
     and PANEL_1X2 has the widest spread (~12 ticks) but strongest intraday
@@ -29,9 +15,9 @@ UV_VISOR changes (prior session):
   - Size-skew on UV_VISOR_* MM quotes — v17.
   - Join-best execution on UV_VISOR_* (offset=0 instead of +1/-1) — v18.
 
-Asset classes UNCHANGED:
+Asset classes UNCHANGED from v1:
   PEBBLES (v11), ROBOT (H25), TRANSLATOR (T42), MICROCHIP, SNACKPACK,
-  GALAXY_SOUNDS.
+  SLEEP_POD, GALAXY_SOUNDS, OXYGEN_SHAKE.
 """
 from __future__ import annotations
 
@@ -48,9 +34,8 @@ PAIRS: List[Tuple[str, str, str, float]] = [
     ("MICROCHIP_RECTANGLE", "MICROCHIP_TRIANGLE", "spread", 2.0),
     # PANEL
     ("PANEL_2X4", "PANEL_4X4", "sum", 2.0),
-    # SLEEP_POD — pair scanner gain (+12.6k vs prior 1-pair config)
-    # POLY-COTTON: lowered z 1.8 -> 1.0 (single change worth +12.0k)
-    # POLY-SUEDE: new pair, unlocks SUEDE leg (was -6.3k, becomes +2.9k)
+    # SLEEP_POD — v3: POLY-COTTON tuned to z=1.0 + new POLY-SUEDE z=1.8
+    # (combo sim: +47k vs baseline, all 3 days positive)
     ("SLEEP_POD_POLYESTER", "SLEEP_POD_COTTON", "spread", 1.0),
     ("SLEEP_POD_POLYESTER", "SLEEP_POD_SUEDE", "spread", 1.8),
     # SNACKPACK
@@ -145,18 +130,6 @@ UV_AMBER_BETAS = {
     "UV_VISOR_YELLOW": -0.167,
 }
 UV_AMBER_TAKE_THRESHOLD = 400
-
-# OXYGEN_SHAKE_MINT fair-value model (eda5/oxygen_shake/mint_deep_dive.py).
-# PANEL-only basket: full sample R²=0.644, in-sample resid_sd=303.
-# Holdout sd 230-440 (more stable than top8's 430-660).
-# Threshold 200 was the backtest peak (sweep 100-400, see MINT_VERDICT.md).
-MINT_INTERCEPT = 7551.93
-MINT_BETAS = {
-    "PANEL_2X2": 0.3942,
-    "PANEL_1X4": 0.1190,
-    "PANEL_4X4": -0.2639,
-}
-MINT_TAKE_THRESHOLD = 200
 
 
 def mid_of(d: OrderDepth):
@@ -303,9 +276,7 @@ class Trader:
             position = state.position.get(sym, 0)
             skew = int(round(position * MM_SKEW_PER_UNIT))
             # v18: UV_VISOR join-best (offset 0)
-            # OXY: same trick — BBO spread is 12-15 ticks and trades only fire
-            # at BBO, so joining captures the full spread (+7.55k validated).
-            depth_off = 0 if (sym.startswith("UV_VISOR_") or sym.startswith("OXYGEN_SHAKE_")) else 1
+            depth_off = 0 if sym.startswith("UV_VISOR_") else 1
             bid_px = best_bid + depth_off - skew
             ask_px = best_ask - depth_off - skew
             if bid_px >= best_ask:
@@ -380,46 +351,6 @@ class Trader:
                             extra.append(Order("UV_VISOR_AMBER", bb, -qty))
                     if extra:
                         result["UV_VISOR_AMBER"] = existing + extra
-
-        # ---- OXYGEN_SHAKE_MINT cross-family fair-value edge taker ----
-        # Lifts MINT from +0.95k -> +56.94k in 3-day backtest. Same template as
-        # AMBER: take when bid/ask deviates from PANEL-implied fair by > 200.
-        mint_dep = state.order_depths.get("OXYGEN_SHAKE_MINT")
-        if mint_dep is not None and "OXYGEN_SHAKE_MINT" not in engaged_pair_legs:
-            other_mids = {}
-            for s in MINT_BETAS:
-                d = state.order_depths.get(s)
-                if d is not None:
-                    m = mid_of(d)
-                    if m is not None:
-                        other_mids[s] = m
-            if len(other_mids) == len(MINT_BETAS):
-                fair = MINT_INTERCEPT + sum(
-                    MINT_BETAS[s] * other_mids[s] for s in MINT_BETAS
-                )
-                bb, ba = best_levels(mint_dep)
-                if bb is not None and ba is not None:
-                    pos_m = state.position.get("OXYGEN_SHAKE_MINT", 0)
-                    existing = result.get("OXYGEN_SHAKE_MINT", [])
-                    extra: List[Order] = []
-                    if fair - ba > MINT_TAKE_THRESHOLD:
-                        cap = LIMIT - pos_m
-                        for o in existing:
-                            if o.quantity > 0:
-                                cap -= o.quantity
-                        qty = min(5, max(0, cap))
-                        if qty > 0:
-                            extra.append(Order("OXYGEN_SHAKE_MINT", ba, qty))
-                    elif bb - fair > MINT_TAKE_THRESHOLD:
-                        cap = LIMIT + pos_m
-                        for o in existing:
-                            if o.quantity < 0:
-                                cap -= -o.quantity
-                        qty = min(5, max(0, cap))
-                        if qty > 0:
-                            extra.append(Order("OXYGEN_SHAKE_MINT", bb, -qty))
-                    if extra:
-                        result["OXYGEN_SHAKE_MINT"] = existing + extra
 
         # ---- PEBBLES dedicated block (v11) — passive entry on pair legs ----
         books = {}

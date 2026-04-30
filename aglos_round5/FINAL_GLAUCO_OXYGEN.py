@@ -1,15 +1,34 @@
 """
-FINAL_GLAUCO — final submission for IMC Prosperity 4 Round 5.
+FINAL_GLAUCO_OXYGEN — FINAL_GLAUCO + cross-family fair-value takers on all 5
+OXYGEN_SHAKE symbols.
+
+Per-symbol contribution (3-day backtest, isolated runs vs base 851,472):
+  CHOCOLATE       MICROCHIP basket (5 symbols)              thr=150  +11.5k
+  EVENING_BREATH  top-8 cross-family basket                 thr=150  +26.8k
+  GARLIC          PEBBLES basket (S, XL, XS)                thr=250  +48.2k
+  MINT            PANEL basket (2X2, 1X4, 4X4)              thr=200  +56.0k (already)
+  MORNING_BREATH  PEBBLES basket (M, XS)                    thr=250  +21.3k
+
+Conflict review:
+  Each taker reads OTHER symbols' mids only and trades ONLY on its target
+  OXYGEN_SHAKE symbol. No position-cap interference between takers (5
+  distinct trading targets). Read-only basket symbols (PANEL, MICROCHIP,
+  PEBBLES, GALAXY, TRANSLATOR, SLEEP_POD, UV_VISOR) keep their existing
+  MM/pair-trade logic untouched.
+  PANEL_1X4 is read by both MINT and EB (same passive role in both basket).
+  PEBBLES_XS is read by both GARLIC and MB (same passive role in both basket).
+  All reads are to .mid_price, no extra writes to those symbols added.
 
 OXYGEN_SHAKE changes (this session):
-  - MM offset 1 -> 0 (join best instead of improve+1) on all 5 OXY symbols
-    (+7.55k, 787.931 -> 795.482).
-  - MINT cross-family fair-value taker: fair = α + β·PANEL basket. Take when
-    |bid/ask - fair| > 200 ticks. PANEL-only basket avoids the overfitting of
-    larger baskets (OOS resid sd 230-440 vs 430-660 for top8). +55.99k
-    (795.482 -> 851.472). MINT goes from +0.95k -> +56.94k across 3 days.
-  - Pair-trading rejected (mid-price simulator over-estimates with wide BBO;
-    see eda5/oxygen_shake/VERDICT.md and MM_VERDICT.md).
+  - MM offset 1 -> 0 (join best) on all 5 OXY symbols (+7.55k).
+  - MINT cross-family fair-value taker (PANEL basket, thr=200, +55.99k).
+  - CHOCOLATE / EVENING_BREATH / GARLIC / MORNING_BREATH takers added
+    (this file). Validated independently in eda5/oxygen_shake/<symbol>/.
+  - Pair-trading rejected (see eda5/oxygen_shake/VERDICT.md).
+
+PANEL_1X2 add-on (from Josh.py):
+  - Threshold momentum trade: short above 9750, long below 8000, stop at
+    500 ticks adverse. Standalone 3-day +24.8k (Josh standalone bt).
 
 SLEEP_POD change (prior session):
   - POLY-COTTON pair: entry_z 1.8 -> 1.0 (+12.0k, more frequent re-entries).
@@ -157,6 +176,66 @@ MINT_BETAS = {
     "PANEL_4X4": -0.2639,
 }
 MINT_TAKE_THRESHOLD = 200
+
+# OXYGEN_SHAKE_CHOCOLATE — MICROCHIP basket (eda5/oxygen_shake/chocolate/).
+# R²=0.822 in-sample, OOS sd 253-418. Threshold 150 (peak of concave sweep).
+# Expected isolated gain: +11.5k.
+CHOC_INTERCEPT = 6012.92
+CHOC_BETAS = {
+    "MICROCHIP_CIRCLE": 0.5873,
+    "MICROCHIP_OVAL": -0.2003,
+    "MICROCHIP_RECTANGLE": 0.0603,
+    "MICROCHIP_SQUARE": -0.0415,
+    "MICROCHIP_TRIANGLE": -0.0197,
+}
+CHOC_TAKE_THRESHOLD = 150
+
+# OXYGEN_SHAKE_EVENING_BREATH — top-8 cross-family basket
+# (eda5/oxygen_shake/evening_breath/). R²=0.560 in-sample, OOS sd 317-545.
+# Top8 beats top5 here because EB has no dominant family.
+# Threshold 150. Expected isolated gain: +26.8k.
+EB_INTERCEPT = 9097.7233
+EB_BETAS = {
+    "GALAXY_SOUNDS_SOLAR_WINDS": 0.215048,
+    "GALAXY_SOUNDS_SOLAR_FLAMES": -0.213956,
+    "TRANSLATOR_GRAPHITE_MIST": 0.291092,
+    "SLEEP_POD_NYLON": -0.186971,
+    "PEBBLES_L": 0.129765,
+    "PANEL_1X4": 0.109909,
+    "UV_VISOR_YELLOW": -0.319182,
+    "PANEL_1X2": 0.035125,
+}
+EB_TAKE_THRESHOLD = 150
+
+# OXYGEN_SHAKE_GARLIC — PEBBLES basket (eda5/oxygen_shake/garlic/).
+# R²=0.840 in-sample, OOS sd ≈ 410 (very stable, single-family pick).
+# Threshold 250. Expected isolated gain: +48.2k.
+GARLIC_INTERCEPT = 16165.04
+GARLIC_BETAS = {
+    "PEBBLES_S": -0.5554,
+    "PEBBLES_XL": 0.1388,
+    "PEBBLES_XS": -0.1505,
+}
+GARLIC_TAKE_THRESHOLD = 250
+
+# OXYGEN_SHAKE_MORNING_BREATH — PEBBLES basket
+# (eda5/oxygen_shake/morning_breath/). R²=0.797, OOS sd 263-379.
+# Threshold 250. Expected isolated gain: +21.3k.
+MB_INTERCEPT = 14866.29
+MB_BETAS = {
+    "PEBBLES_M": -0.5864,
+    "PEBBLES_XS": 0.1556,
+}
+MB_TAKE_THRESHOLD = 250
+
+# ---- PANEL_1X2 threshold momentum (from Josh.py) ----
+# PANEL_1X2 is removed from MM_UNIVERSE because MM bleeds on its drift, but
+# the drift itself is tradeable: levels above 9750 / below 8000 mean-revert
+# strongly. Long-or-short to the limit, with stop-loss at 500 ticks adverse.
+P1X2_SYM = "PANEL_1X2"
+P1X2_SHORT_ABOVE = 9750   # price too high → sell max
+P1X2_LONG_BELOW  = 8000   # price too low  → buy max
+P1X2_STOP_TICKS  = 500    # close and pause if price moves this many ticks against us
 
 
 def mid_of(d: OrderDepth):
@@ -421,6 +500,53 @@ class Trader:
                     if extra:
                         result["OXYGEN_SHAKE_MINT"] = existing + extra
 
+        # ---- OXYGEN_SHAKE cross-family takers (CHOC, EB, GARLIC, MB) ----
+        # Same template as MINT/AMBER: contemporaneous OLS fair value vs basket;
+        # take the book when it crosses the model by > threshold.
+        for sym, betas, intercept, threshold in (
+            ("OXYGEN_SHAKE_CHOCOLATE", CHOC_BETAS, CHOC_INTERCEPT, CHOC_TAKE_THRESHOLD),
+            ("OXYGEN_SHAKE_EVENING_BREATH", EB_BETAS, EB_INTERCEPT, EB_TAKE_THRESHOLD),
+            ("OXYGEN_SHAKE_GARLIC", GARLIC_BETAS, GARLIC_INTERCEPT, GARLIC_TAKE_THRESHOLD),
+            ("OXYGEN_SHAKE_MORNING_BREATH", MB_BETAS, MB_INTERCEPT, MB_TAKE_THRESHOLD),
+        ):
+            dep = state.order_depths.get(sym)
+            if dep is None or sym in engaged_pair_legs:
+                continue
+            other_mids = {}
+            for s in betas:
+                d = state.order_depths.get(s)
+                if d is not None:
+                    m = mid_of(d)
+                    if m is not None:
+                        other_mids[s] = m
+            if len(other_mids) != len(betas):
+                continue
+            fair = intercept + sum(betas[s] * other_mids[s] for s in betas)
+            bb, ba = best_levels(dep)
+            if bb is None or ba is None:
+                continue
+            pos_s = state.position.get(sym, 0)
+            existing = result.get(sym, [])
+            extra: List[Order] = []
+            if fair - ba > threshold:
+                cap = LIMIT - pos_s
+                for o in existing:
+                    if o.quantity > 0:
+                        cap -= o.quantity
+                qty = min(5, max(0, cap))
+                if qty > 0:
+                    extra.append(Order(sym, ba, qty))
+            elif bb - fair > threshold:
+                cap = LIMIT + pos_s
+                for o in existing:
+                    if o.quantity < 0:
+                        cap -= -o.quantity
+                qty = min(5, max(0, cap))
+                if qty > 0:
+                    extra.append(Order(sym, bb, -qty))
+            if extra:
+                result[sym] = existing + extra
+
         # ---- PEBBLES dedicated block (v11) — passive entry on pair legs ----
         books = {}
         peb_ok = True
@@ -545,5 +671,44 @@ class Trader:
             for sym, orders in peb_orders.items():
                 if orders:
                     result[sym] = orders
+
+        # ---- PANEL_1X2 threshold + stop-loss (from Josh.py) ----
+        # Drift mean-reverts above/below extreme levels; +24.8k 3-day standalone.
+        p1x2_dep = state.order_depths.get(P1X2_SYM)
+        if p1x2_dep is not None:
+            p1x2_mid = mid_of(p1x2_dep)
+            if p1x2_mid is not None:
+                p1x2_st = store.setdefault("p1x2", {"entry": None, "stopped": False})
+                cur_pos = state.position.get(P1X2_SYM, 0)
+                tgt = None
+
+                # Reset stopped flag once price drifts back to neutral zone
+                if p1x2_st["stopped"] and P1X2_LONG_BELOW <= p1x2_mid <= P1X2_SHORT_ABOVE:
+                    p1x2_st["stopped"] = False
+
+                # Stop-loss: close if adverse move exceeds threshold
+                if cur_pos != 0 and p1x2_st["entry"] is not None:
+                    adverse = (p1x2_mid - p1x2_st["entry"]) * (-1 if cur_pos > 0 else 1)
+                    if adverse > P1X2_STOP_TICKS:
+                        tgt = 0
+                        p1x2_st["stopped"] = True
+                        p1x2_st["entry"] = None
+
+                # Entry logic — only when flat and not stopped out
+                if tgt is None and cur_pos == 0 and not p1x2_st["stopped"]:
+                    if p1x2_mid > P1X2_SHORT_ABOVE:
+                        tgt = -LIMIT
+                        p1x2_st["entry"] = p1x2_mid
+                    elif p1x2_mid < P1X2_LONG_BELOW:
+                        tgt = LIMIT
+                        p1x2_st["entry"] = p1x2_mid
+
+                # Execute
+                if tgt is not None:
+                    delta = tgt - cur_pos
+                    if delta > 0 and p1x2_dep.sell_orders:
+                        result[P1X2_SYM] = [Order(P1X2_SYM, min(p1x2_dep.sell_orders), delta)]
+                    elif delta < 0 and p1x2_dep.buy_orders:
+                        result[P1X2_SYM] = [Order(P1X2_SYM, max(p1x2_dep.buy_orders), delta)]
 
         return result, 0, jsonpickle.encode(store)

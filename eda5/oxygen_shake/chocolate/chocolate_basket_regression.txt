@@ -1,0 +1,23 @@
+Top 8 level correlations with OXYGEN_SHAKE_CHOCOLATE:
+  MICROCHIP_CIRCLE                    corr=0.830
+  MICROCHIP_TRIANGLE                  corr=0.755
+  SLEEP_POD_NYLON                     corr=0.751
+  PEBBLES_S                           corr=0.686
+  TRANSLATOR_SPACE_GRAY               corr=0.680
+  MICROCHIP_OVAL                      corr=0.660
+  UV_VISOR_RED                        corr=0.657
+  OXYGEN_SHAKE_GARLIC                 corr=0.646
+
+OLS coefficients (full sample):
+  intercept = 3116.79
+  MICROCHIP_CIRCLE                    beta=+0.6155
+  MICROCHIP_TRIANGLE                  beta=-0.0775
+  SLEEP_POD_NYLON                     beta=+0.1516
+  PEBBLES_S                           beta=-0.0018
+  TRANSLATOR_SPACE_GRAY               beta=+0.0289
+  MICROCHIP_OVAL                      beta=-0.0655
+  UV_VISOR_RED                        beta=-0.0192
+  OXYGEN_SHAKE_GARLIC                 beta=+0.0460
+
+Residual: mean=0.00  sd=240.23  R2=0.8164
+Residual half-life: 517 ticks

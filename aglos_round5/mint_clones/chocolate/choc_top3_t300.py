@@ -159,6 +159,16 @@ MINT_BETAS = {
 MINT_TAKE_THRESHOLD = 200
 
 
+# CHOCOLATE fair-value model (basket=top3, thr=300)
+CHOC_INTERCEPT = 4655.1471
+CHOC_BETAS = {
+    "MICROCHIP_CIRCLE": +0.5769,
+    "MICROCHIP_TRIANGLE": -0.2085,
+    "SLEEP_POD_NYLON": +0.1666,
+}
+CHOC_TAKE_THRESHOLD = 300
+
+
 def mid_of(d: OrderDepth):
     if not d.buy_orders or not d.sell_orders:
         return None
@@ -420,6 +430,46 @@ class Trader:
                             extra.append(Order("OXYGEN_SHAKE_MINT", bb, -qty))
                     if extra:
                         result["OXYGEN_SHAKE_MINT"] = existing + extra
+
+
+        # ---- OXYGEN_SHAKE_CHOCOLATE cross-family fair-value edge taker ----
+        # Same template as MINT, basket via eda5/oxygen_shake/chocolate/.
+        choc_dep = state.order_depths.get("OXYGEN_SHAKE_CHOCOLATE")
+        if choc_dep is not None and "OXYGEN_SHAKE_CHOCOLATE" not in engaged_pair_legs:
+            other_mids_c = {}
+            for s in CHOC_BETAS:
+                d = state.order_depths.get(s)
+                if d is not None:
+                    m = mid_of(d)
+                    if m is not None:
+                        other_mids_c[s] = m
+            if len(other_mids_c) == len(CHOC_BETAS):
+                fair_c = CHOC_INTERCEPT + sum(
+                    CHOC_BETAS[s] * other_mids_c[s] for s in CHOC_BETAS
+                )
+                bb_c, ba_c = best_levels(choc_dep)
+                if bb_c is not None and ba_c is not None:
+                    pos_c = state.position.get("OXYGEN_SHAKE_CHOCOLATE", 0)
+                    existing_c = result.get("OXYGEN_SHAKE_CHOCOLATE", [])
+                    extra_c: List[Order] = []
+                    if fair_c - ba_c > CHOC_TAKE_THRESHOLD:
+                        cap = LIMIT - pos_c
+                        for o in existing_c:
+                            if o.quantity > 0:
+                                cap -= o.quantity
+                        qty = min(5, max(0, cap))
+                        if qty > 0:
+                            extra_c.append(Order("OXYGEN_SHAKE_CHOCOLATE", ba_c, qty))
+                    elif bb_c - fair_c > CHOC_TAKE_THRESHOLD:
+                        cap = LIMIT + pos_c
+                        for o in existing_c:
+                            if o.quantity < 0:
+                                cap -= -o.quantity
+                        qty = min(5, max(0, cap))
+                        if qty > 0:
+                            extra_c.append(Order("OXYGEN_SHAKE_CHOCOLATE", bb_c, -qty))
+                    if extra_c:
+                        result["OXYGEN_SHAKE_CHOCOLATE"] = existing_c + extra_c
 
         # ---- PEBBLES dedicated block (v11) — passive entry on pair legs ----
         books = {}
