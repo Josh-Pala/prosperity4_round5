@@ -1,0 +1,55 @@
+[t+   0.4s] loading per-day...
+[t+   1.8s] running pair backtests per day (taker)...
+
+=== TAKER pair backtest, top 25 by total PnL across 3 days ===
+      a       b   sign  entry_z  d2_pnl  d2_cyc  d3_pnl  d3_cyc  d4_pnl  d4_cyc  tot_pnl
+ ORANGE     RED spread      1.8  5090.0       3 16870.0       6 13460.0       9  35420.0
+ ORANGE     RED spread      1.5  9040.0       5 11600.0       6 11430.0      11  32070.0
+ ORANGE     RED spread      2.0  1140.0       2 16100.0       5 12650.0       7  29890.0
+  AMBER     RED    sum      1.2  6160.0       6 10810.0       7 11740.0      11  28710.0
+ ORANGE  YELLOW    sum      1.5  4350.0       7 17340.0       8  6890.0       6  28580.0
+MAGENTA     RED    sum      1.0 12490.0      10 11570.0      11  4180.0       7  28240.0
+ ORANGE  YELLOW    sum      2.0  4980.0       5  9910.0       4 13000.0       6  27890.0
+MAGENTA  YELLOW    sum      1.2  9180.0      17 10630.0      10  6940.0       8  26750.0
+MAGENTA  YELLOW    sum      1.5  9480.0      13  9640.0       7  7620.0       6  26740.0
+  AMBER     RED    sum      1.0  3860.0       6  9330.0       9 13040.0      15  26230.0
+MAGENTA  YELLOW    sum      2.0  7380.0       7 10280.0       5  7980.0       4  25640.0
+ ORANGE  YELLOW    sum      1.8  7080.0       7  7680.0       4 10670.0       6  25430.0
+ ORANGE  YELLOW    sum      1.0  5790.0      15 17120.0      13  2200.0       6  25110.0
+ ORANGE  YELLOW    sum      1.2  4420.0      10 16570.0      10  3950.0       6  24940.0
+    RED  YELLOW    sum      1.2  -180.0       3 19290.0      11  4630.0       8  23740.0
+ ORANGE     RED spread      1.2  4410.0       5 11210.0       8  8050.0      13  23670.0
+MAGENTA  YELLOW    sum      1.8  7000.0       8  7790.0       5  8530.0       5  23320.0
+  AMBER     RED    sum      1.5  5250.0       4  5170.0       3 12590.0       8  23010.0
+MAGENTA     RED    sum      1.8  5060.0       3  8540.0       4  8840.0       5  22440.0
+MAGENTA  YELLOW    sum      1.0  7710.0      21  9710.0      12  4680.0       9  22100.0
+  AMBER  ORANGE    sum      1.5  -230.0       7  9610.0       6 12690.0       7  22070.0
+    RED  YELLOW    sum      1.5  1980.0       3 14480.0       6  5020.0       6  21480.0
+  AMBER  ORANGE    sum      1.2   -60.0      12 11260.0       9 10080.0       8  21280.0
+MAGENTA     RED    sum      1.2  4930.0       5 12160.0       9  4120.0       6  21210.0
+  AMBER MAGENTA    sum      1.0 13320.0      16  6790.0       9   620.0       4  20730.0
+[t+   2.9s] MM-only backtest per symbol per day...
+
+=== MM-only PnL per symbol per day (aggressive bb+1/ba-1, qsize=5) ===
+    sym       d2       d3       d4      tot
+  AMBER 195924.0 160298.0 141458.0 497680.0
+MAGENTA 224547.0 246720.0 251748.0 723015.0
+ ORANGE 212433.0 228275.0 234046.0 674755.0
+    RED 233594.0 229520.0 256772.0 719887.0
+ YELLOW 233875.0 247874.0 230420.0 712170.0
+Total MM-only across 5 symbols 3 days: 3,327,507
+[t+   3.0s] combined top pairs simulation...
+
+Top 10 pair config across 3 days:
+      a      b   sign  entry_z  tot_pnl  d2_pnl  d3_pnl  d4_pnl
+ ORANGE    RED spread      1.8  35420.0  5090.0 16870.0 13460.0
+ ORANGE    RED spread      1.5  32070.0  9040.0 11600.0 11430.0
+ ORANGE    RED spread      2.0  29890.0  1140.0 16100.0 12650.0
+  AMBER    RED    sum      1.2  28710.0  6160.0 10810.0 11740.0
+ ORANGE YELLOW    sum      1.5  28580.0  4350.0 17340.0  6890.0
+MAGENTA    RED    sum      1.0  28240.0 12490.0 11570.0  4180.0
+ ORANGE YELLOW    sum      2.0  27890.0  4980.0  9910.0 13000.0
+MAGENTA YELLOW    sum      1.2  26750.0  9180.0 10630.0  6940.0
+MAGENTA YELLOW    sum      1.5  26740.0  9480.0  9640.0  7620.0
+  AMBER    RED    sum      1.0  26230.0  3860.0  9330.0 13040.0
+[t+   3.0s] DONE

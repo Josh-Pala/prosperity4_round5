@@ -1,0 +1,6 @@
+symbol,ema_n,theta,d2_IS,d3_OOS,d4_OOS,OOS_total,all_OOS_pos
+COTTON,10,0.2,410.0,0.0,-550.0,-550.0,False
+LAMB_WOOL,20,0.1,720.0,500.0,-680.0,-180.0,False
+NYLON,50,0.1,60.0,-160.0,0.0,-160.0,False
+POLYESTER,10,0.3,0.0,0.0,0.0,0.0,False
+SUEDE,10,0.3,0.0,0.0,0.0,0.0,False

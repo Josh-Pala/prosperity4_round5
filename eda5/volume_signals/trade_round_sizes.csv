@@ -1,0 +1,6 @@
+symbol,size,count_all,count_top1pct,share_top1pct,p99
+PEBBLES_L,5,177,177,1.0,5.0
+PEBBLES_M,5,177,177,1.0,5.0
+PEBBLES_S,5,177,177,1.0,5.0
+PEBBLES_XL,5,177,177,1.0,5.0
+PEBBLES_XS,5,177,177,1.0,5.0

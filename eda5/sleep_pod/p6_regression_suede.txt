@@ -1,0 +1,30 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:        SLEEP_POD_SUEDE   R-squared:                       0.753
+Model:                            OLS   Adj. R-squared:                  0.753
+Method:                 Least Squares   F-statistic:                 2.289e+04
+Date:                Wed, 29 Apr 2026   Prob (F-statistic):               0.00
+Time:                        19:52:39   Log-Likelihood:            -2.2565e+05
+No. Observations:               30000   AIC:                         4.513e+05
+Df Residuals:                   29995   BIC:                         4.513e+05
+Df Model:                           4                                         
+Covariance Type:            nonrobust                                         
+=======================================================================================
+                          coef    std err          t      P>|t|      [0.025      0.975]
+---------------------------------------------------------------------------------------
+const                2761.3840     75.262     36.690      0.000    2613.866    2908.902
+SLEEP_POD_COTTON       -0.1955      0.006    -31.160      0.000      -0.208      -0.183
+SLEEP_POD_LAMB_WOOL     0.0577      0.007      7.801      0.000       0.043       0.072
+SLEEP_POD_NYLON        -0.1226      0.006    -19.062      0.000      -0.135      -0.110
+SLEEP_POD_POLYESTER     0.9673      0.006    173.756      0.000       0.956       0.978
+==============================================================================
+Omnibus:                      511.600   Durbin-Watson:                   0.001
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):              287.489
+Skew:                           0.011   Prob(JB):                     3.74e-63
+Kurtosis:                       2.521   Cond. No.                     6.40e+05
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 6.4e+05. This might indicate that there are
+strong multicollinearity or other numerical problems.

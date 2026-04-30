@@ -1,0 +1,11 @@
+,0
+levels_pearson_XL_vs_XS,-0.8275696574563156
+returns_pearson_XL_vs_XS,-0.47514289315572733
+best_granger_pvalue,0.009655559927869475
+best_granger_pair,PEBBLES_XL -> PEBBLES_M
+best_coint_pair,PEBBLES_XS - PEBBLES_S
+best_coint_pvalue,0.19426840143367885
+johansen_rank,1
+xl_basket_R2,0.9999975186856395
+xl_basket_resid_adf_p,0.0
+xl_basket_halflife_ticks,0.7022623375310733

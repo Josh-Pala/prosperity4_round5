@@ -1,0 +1,124 @@
+[t+   3.2s] loading data...
+[t+   4.7s] mid (30000, 5), ret (29999, 5), vol (30000, 5), trades (3665, 9)
+[t+   4.8s] p1 descriptives...
+                      n   mean_mid  ...  spread_p90  trade_vol_total
+UV_VISOR_AMBER    30000   7911.696  ...        12.0           1805.0
+UV_VISOR_MAGENTA  30000  11111.793  ...        15.0           1805.0
+UV_VISOR_ORANGE   30000  10426.506  ...        14.0           1805.0
+UV_VISOR_RED      30000  11063.294  ...        15.0           1805.0
+UV_VISOR_YELLOW   30000  10957.461  ...        15.0           1805.0
+
+[5 rows x 13 columns]
+[t+   5.2s] p2 correlations...
+
+Corr levels:
+ product           UV_VISOR_AMBER  ...  UV_VISOR_YELLOW
+product                           ...                 
+UV_VISOR_AMBER             1.000  ...           -0.119
+UV_VISOR_MAGENTA          -0.867  ...            0.285
+UV_VISOR_ORANGE           -0.711  ...           -0.018
+UV_VISOR_RED              -0.589  ...           -0.443
+UV_VISOR_YELLOW           -0.119  ...            1.000
+
+[5 rows x 5 columns]
+
+Corr returns:
+ product           UV_VISOR_AMBER  ...  UV_VISOR_YELLOW
+product                           ...                 
+UV_VISOR_AMBER             1.000  ...           -0.002
+UV_VISOR_MAGENTA           0.006  ...            0.009
+UV_VISOR_ORANGE            0.004  ...            0.004
+UV_VISOR_RED              -0.001  ...            0.008
+UV_VISOR_YELLOW           -0.002  ...            1.000
+
+[5 rows x 5 columns]
+[t+   5.3s] p3 pair z-scan (spread + sum)...
+
+Top pairs by ADF (most mean-reverting):
+         a        b    sign       mean  ...  z_p99  adf_p  coint_p  half_life
+0      RED   YELLOW     sum  22020.754  ...  2.292  0.026      NaN   1666.480
+1    AMBER   YELLOW  spread  -3045.764  ...  2.384  0.123    0.668   4542.261
+2    AMBER  MAGENTA     sum  19023.489  ...  1.963  0.126      NaN   1966.116
+3  MAGENTA      RED     sum  22175.086  ...  1.914  0.255      NaN   3576.960
+4  MAGENTA   YELLOW     sum  22069.254  ...  1.465  0.273      NaN   3891.808
+5    AMBER      RED  spread  -3151.597  ...  2.020  0.288    0.660   6281.552
+6    AMBER  MAGENTA  spread  -3200.097  ...  1.927  0.309    0.078   6996.133
+7  MAGENTA      RED  spread     48.499  ...  2.146  0.325    0.541   2816.779
+8  MAGENTA   ORANGE  spread    685.287  ...  2.652  0.359    0.518   2274.725
+9   ORANGE      RED     sum  21489.800  ...  1.994  0.387      NaN   4190.796
+
+[10 rows x 12 columns]
+[t+  47.5s] p4 linear combos / invariants...
+
+Full sum stats: {'count': 30000.0, 'mean': 51470.75, 'std': 742.33, 'min': 49687.0, '25%': 50867.88, '50%': 51460.75, '75%': 52005.0, 'max': 53850.0}
+    target  intercept  b_MAGENTA  ...  resid_std  resid_p99  b_AMBER
+0    AMBER  31353.285     -0.970  ...    320.944    815.803      NaN
+1  MAGENTA  19824.978        NaN  ...    264.083    647.259   -0.657
+2   ORANGE  19557.759     -0.134  ...    378.402   1189.836   -0.535
+3      RED  27273.019     -0.469  ...    337.304    884.780   -0.682
+4   YELLOW  25282.300      0.117  ...    510.175   1133.914   -0.421
+
+[5 rows x 10 columns]
+
+Tightest subset sums (lowest CV):
+    k                          set        mean       std      cv
+11  3            AMBER+MAGENTA+RED  30086.7827  436.6669  0.0145
+22  4     AMBER+MAGENTA+RED+YELLOW  41044.2435  614.1063  0.0150
+20  4     AMBER+MAGENTA+ORANGE+RED  40513.2890  614.6335  0.0152
+23  4      AMBER+ORANGE+RED+YELLOW  40358.9568  614.0298  0.0152
+10  3         AMBER+MAGENTA+ORANGE  29449.9954  476.6434  0.0162
+21  4  AMBER+MAGENTA+ORANGE+YELLOW  40407.4561  868.9987  0.0215
+13  3             AMBER+ORANGE+RED  29401.4960  664.7009  0.0226
+15  3             AMBER+RED+YELLOW  29932.4506  773.2652  0.0258
+0   2                AMBER+MAGENTA  19023.4892  556.1762  0.0292
+9   2                   RED+YELLOW  22020.7543  674.9729  0.0307
+[t+  47.6s] p5 lead-lag...
+
+Lead-lag (returns), top 10:
+         a        b  best_lag  max_abs_corr
+7   ORANGE      RED         0         0.020
+1    AMBER   ORANGE        -9         0.015
+3    AMBER   YELLOW        13         0.010
+4  MAGENTA   ORANGE         4        -0.011
+9      RED   YELLOW        16        -0.012
+0    AMBER  MAGENTA         3        -0.013
+6  MAGENTA   YELLOW       -14        -0.014
+8   ORANGE   YELLOW         2        -0.015
+5  MAGENTA      RED         8        -0.015
+2    AMBER      RED       -19        -0.016
+[t+  47.8s] p7 microstructure...
+       sym  spread_mean  ...  frac_spread_ge_4  frac_spread_ge_5
+0    AMBER       10.320  ...               1.0             0.993
+1  MAGENTA       14.092  ...               1.0             1.000
+2   ORANGE       13.284  ...               1.0             1.000
+3      RED       14.039  ...               1.0             1.000
+4   YELLOW       13.910  ...               1.0             1.000
+
+[5 rows x 10 columns]
+[t+  47.8s] p8 strategy backtests (toy, mid-to-mid)...
+
+Top 15 pair backtests (mid-to-mid, SIZE=10):
+      a       b   sign  entry_z  pnl_mid  cycles
+MAGENTA  ORANGE spread      1.0  35820.0      22
+MAGENTA  ORANGE spread      1.0  34050.0      30
+MAGENTA  YELLOW spread      2.0  27605.0      20
+MAGENTA  ORANGE spread      2.0  26065.0      15
+  AMBER  ORANGE    sum      2.0  22835.0       8
+ ORANGE  YELLOW spread      1.0  21905.0      31
+MAGENTA  YELLOW spread      1.0  21525.0      23
+  AMBER MAGENTA    sum      1.0  21095.0      26
+MAGENTA  YELLOW spread      1.0  19390.0      27
+MAGENTA  ORANGE    sum      2.0  18520.0      14
+  AMBER MAGENTA    sum      2.0  18505.0      16
+  AMBER MAGENTA    sum      1.0  18375.0      20
+MAGENTA  ORANGE spread      2.0  18210.0      10
+  AMBER  ORANGE    sum      2.0  17935.0      10
+MAGENTA     RED spread      2.0  17580.0       6
+[t+  59.2s] p9 MM edge proxy...
+       sym  mm_proxy_pnl
+0    AMBER       16834.0
+1  MAGENTA       23662.0
+2   ORANGE       22147.0
+3      RED       23561.0
+4   YELLOW       23368.0
+[t+  59.2s] DONE

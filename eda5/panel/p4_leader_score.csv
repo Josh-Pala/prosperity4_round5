@@ -1,0 +1,6 @@
+panel,leads_count,lags_count,score
+PANEL_2X4,4,0,4
+PANEL_4X4,3,1,2
+PANEL_1X2,1,2,-1
+PANEL_2X2,1,2,-1
+PANEL_1X4,0,4,-4

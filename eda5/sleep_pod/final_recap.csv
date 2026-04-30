@@ -1,0 +1,14 @@
+Strategy,PnL,Note
+MM realistic (best+1),-590677.5,3day total in-sample - perdita massiccia
+MM passive at best,-668734.0,3day total in-sample - perdita massiccia
+Pairs SUEDE-basket,-9884.0,"in-sample 3day, fail"
+Pairs LAMB_WOOL-NYLON,1307.0,"in-sample 3day, marginale"
+H1 Momentum LAMB_WOOL,2085.0,"in-sample 3day, Sharpe ~0"
+H4 Lead-lag NYLON->COTTON,25245.0,"in-sample 3day, Sharpe 0.15"
+imb predictor (cross),-14310.0,OOS day3+4 - costo spread
+imb HOLD,-890.0,OOS day3+4 - quasi piatto
+selective passive MM,-1494.0,OOS day3+4 totale 5 simboli
+Selective passive (COTTON),621.0,OOS day3+4 ENTRAMBI POSITIVI
+Selective passive (LAMB_WOOL),1519.0,"OOS day3+4 (d3+, d4-)"
+PORTFOLIO COTTON+LAMB_WOOL,2140.0,OOS day3+4 totale
+contrarian,-3667.0,OOS day3+4

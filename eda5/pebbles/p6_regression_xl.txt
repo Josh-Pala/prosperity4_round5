@@ -1,0 +1,30 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:             PEBBLES_XL   R-squared:                       1.000
+Model:                            OLS   Adj. R-squared:                  1.000
+Method:                 Least Squares   F-statistic:                 3.022e+09
+Date:                Wed, 29 Apr 2026   Prob (F-statistic):               0.00
+Time:                        15:36:41   Log-Likelihood:                -73440.
+No. Observations:               30000   AIC:                         1.469e+05
+Df Residuals:                   29995   BIC:                         1.469e+05
+Df Model:                           4                                         
+Covariance Type:            nonrobust                                         
+==============================================================================
+                 coef    std err          t      P>|t|      [0.025      0.975]
+------------------------------------------------------------------------------
+const           5e+04      0.517   9.68e+04      0.000       5e+04       5e+04
+PEBBLES_XS    -1.0000   2.07e-05  -4.83e+04      0.000      -1.000      -1.000
+PEBBLES_S     -1.0000    3.3e-05  -3.03e+04      0.000      -1.000      -1.000
+PEBBLES_M     -1.0000   3.39e-05  -2.95e+04      0.000      -1.000      -1.000
+PEBBLES_L     -1.0000    2.8e-05  -3.57e+04      0.000      -1.000      -1.000
+==============================================================================
+Omnibus:                    14872.428   Durbin-Watson:                   1.974
+Prob(Omnibus):                  0.000   Jarque-Bera (JB):          1220315.354
+Skew:                          -1.505   Prob(JB):                         0.00
+Kurtosis:                      34.100   Cond. No.                     5.93e+05
+==============================================================================
+
+Notes:
+[1] Standard Errors assume that the covariance matrix of the errors is correctly specified.
+[2] The condition number is large, 5.93e+05. This might indicate that there are
+strong multicollinearity or other numerical problems.

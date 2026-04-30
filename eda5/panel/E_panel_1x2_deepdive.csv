@@ -1,0 +1,4 @@
+day,n_ticks,mid_start,mid_end,drift_total,spread_mean,spread_p10,pct_adverse_long,pct_adverse_short,abs_ret_mean
+2,10000,10000.0,8431.5,-1568.5,11.89,11.0,49.5,48.2,7.518
+3,10000,8428.5,8853.5,425.0,10.75,10.0,47.7,49.2,6.706
+4,10000,8849.5,9696.0,846.5,11.89,11.0,47.9,49.2,7.397

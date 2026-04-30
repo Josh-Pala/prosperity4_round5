@@ -1,0 +1,13 @@
+,0
+sum_mid_mean,55103.509633333335
+sum_mid_cv,0.05181414278540513
+max_abs_pearson_returns,0.008978939650088514
+best_granger_pvalue,0.01412722247720962
+best_granger_pair,NYLON -> COTTON
+best_coint_pair,LAMB_WOOL - NYLON
+best_coint_pvalue,0.07527948587869922
+best_coint_halflife,1197.5072704718925
+johansen_rank,0
+suede_basket_R2,0.7532629586155459
+suede_basket_resid_adf_p,0.02413444155732162
+suede_basket_halflife_ticks,1043.166903349929
